@@ -4,61 +4,316 @@
 
 /* ====== Global tweaks ====== */
 :root {
-  --brand: #1f6feb;         /* link/button color */
-  --ink: #111;
-  --muted: #666;
+  --brand: #1f6feb;
+  --brand-dark: #1558c7;
+  --ink: #1a1a1a;
+  --muted: #555;
   --card: #ffffff;
-  --border: #e6e6e6;
+  --border: #e0e0e0;
   --bg: #fafafa;
+  --accent: #fff3a5;
 }
+
+* {
+  box-sizing: border-box;
+}
+
 body {
   color: var(--ink);
   background: var(--bg);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  line-height: 1.65;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
 }
-h1, h2, h3 { letter-spacing: -0.2px; }
-p { line-height: 1.7; }
+
+h1, h2, h3 { 
+  letter-spacing: -0.3px; 
+  color: var(--ink);
+  font-weight: 600;
+}
+
+h2 {
+  margin-top: 0;
+  margin-bottom: 1.2rem;
+  font-size: 1.4rem;
+  border-bottom: 2px solid var(--border);
+  padding-bottom: 0.5rem;
+}
+
+h3 {
+  font-size: 1.05rem;
+  margin: 0 0 0.3rem 0;
+}
+
+p { 
+  line-height: 1.7; 
+  margin: 0 0 1rem 0;
+}
+
+a {
+  color: var(--brand);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 2rem 0;
+}
+
+strong {
+  font-weight: 600;
+}
 
 /* ====== Hero ====== */
 .hero {
   text-align: center;
-  margin: 1.5rem 0 2rem;
+  margin: 0 0 1.5rem;
+  padding: 1rem 0;
 }
-.hero h1 { font-size: 2.2rem; margin-bottom: .25rem; }
-.hero h1 span { background: linear-gradient(transparent 70%, #fff3a5 0); }
-.hero .tagline { color: var(--muted); margin: 0 auto .8rem; max-width: 42rem; }
 
-.quick-links { display: inline-flex; gap: .5rem; flex-wrap: wrap; }
+.hero-photo {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--card);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  margin: 0 auto 0.8rem;
+  display: block;
+}
+
+.hero h1 { 
+  font-size: 2rem; 
+  margin: 0 0 0.5rem 0;
+  font-weight: 700;
+}
+
+.hero h1 span { 
+  background: linear-gradient(transparent 65%, var(--accent) 0); 
+  padding: 0 4px;
+}
+
+.hero .tagline { 
+  color: var(--muted); 
+  margin: 0 auto 0.4rem; 
+  max-width: 42rem; 
+  font-size: 1.05rem;
+  line-height: 1.5;
+}
+
+.hero .tagline:first-of-type {
+  font-size: 0.95rem;
+  font-style: italic;
+  color: #777;
+}
+
+.hero .location {
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin: 0.8rem 0 0.5rem;
+}
+
+.quick-links { 
+  display: inline-flex; 
+  gap: 0.6rem; 
+  flex-wrap: wrap; 
+  justify-content: center;
+  margin-top: 1rem;
+}
 
 /* ====== Buttons ====== */
 .btn {
   display: inline-block;
-  padding: .5rem .8rem;
-  border-radius: .6rem;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
   border: 1px solid var(--border);
   text-decoration: none;
   background: var(--card);
-  transition: transform .05s ease, box-shadow .2s ease, border-color .2s ease;
+  color: var(--ink);
+  font-size: 0.88rem;
+  font-weight: 500;
+  transition: all 0.15s ease;
 }
-.btn:hover { transform: translateY(-1px); box-shadow: 0 4px 14px rgba(0,0,0,.06); border-color: #dcdcdc; }
-.btn-ghost { background: transparent; }
+
+.btn:hover { 
+  transform: translateY(-2px); 
+  box-shadow: 0 4px 12px rgba(0,0,0,.08); 
+  border-color: #ccc; 
+  text-decoration: none;
+}
 
 /* ====== Grid cards ====== */
 .grid {
   display: grid;
-  grid-template-columns: repeat( auto-fit, minmax(260px, 1fr) );
+  grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
-  margin: 1rem 0 1.5rem;
+  margin: 0 0 0.5rem;
 }
+
 .card {
   background: var(--card);
   border: 1px solid var(--border);
-  border-radius: 1rem;
-  padding: 1rem 1.1rem;
-  box-shadow: 0 1px 0 rgba(0,0,0,.02);
+  border-radius: 0.75rem;
+  padding: 1rem 1.2rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,.03);
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
 }
-.card h3 { margin: 0 0 .25rem; font-size: 1.05rem; }
-.card p { margin: 0 0 .6rem; color: var(--muted); }
-.card .meta { font-size: .85rem; color: var(--muted); margin-bottom: .6rem; }
 
-/* ====== Avatar (if using `logo:`) ====== */
-.site-header .site-logo { border-radius: 50%; border: 1px solid var(--border); }
+.card:hover {
+  box-shadow: 0 4px 14px rgba(0,0,0,.07);
+  transform: translateY(-2px);
+}
+
+.card h3 { 
+  font-size: 1rem; 
+  color: var(--ink);
+  margin: 0 0 0.4rem 0;
+}
+
+.card p { 
+  margin: 0; 
+  color: var(--muted); 
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+
+.card .meta { 
+  font-size: 0.82rem; 
+  color: var(--brand); 
+  margin: 0 0 0.4rem 0;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+/* ====== Lists (News, Awards) ====== */
+ul {
+  padding: 0;
+  margin: 0 0 0.5rem;
+  list-style: none;
+}
+
+ul li {
+  padding: 0.6rem 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+
+ul li:last-child {
+  border-bottom: none;
+}
+
+ul li strong {
+  color: var(--ink);
+}
+
+/* ====== Footer ====== */
+small {
+  color: var(--muted);
+  font-size: 0.85rem;
+  display: block;
+  text-align: center;
+  margin-top: 1rem;
+}
+
+/* ====== Override Jekyll Minimal Theme Defaults ====== */
+.wrapper {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+header {
+  width: 100% !important;
+  float: none !important;
+  position: relative !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  text-align: left !important;
+}
+
+header h1 {
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+header p {
+  display: none;
+}
+
+section {
+  width: 100% !important;
+  float: none !important;
+  padding: 0 !important;
+  border: none !important;
+}
+
+footer {
+  width: 100% !important;
+  float: none !important;
+  text-align: center;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+  margin-top: 2rem;
+}
+
+/* ====== Responsive ====== */
+@media (max-width: 650px) {
+  body {
+    padding: 1.5rem 1rem;
+  }
+
+  .hero-photo {
+    width: 120px;
+    height: 120px;
+  }
+
+  .hero h1 {
+    font-size: 1.6rem;
+  }
+  
+  .hero .tagline {
+    font-size: 0.95rem;
+  }
+  
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .quick-links {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .btn {
+    width: 100%;
+    max-width: 180px;
+    text-align: center;
+  }
+
+  h2 {
+    font-size: 1.25rem;
+  }
+
+  ul li {
+    font-size: 0.9rem;
+  }
+}
+
+@media print, screen and (max-width: 720px) {
+  header {
+    padding: 0 !important;
+  }
+  
+  section {
+    padding: 0 !important;
+  }
+}
